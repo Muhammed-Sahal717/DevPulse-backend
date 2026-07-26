@@ -21,7 +21,11 @@ DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = os.getenv("DB_PORT", "5432")
 DB_NAME = os.getenv("DB_NAME", "devpulse_db")
 
-DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+# Use DATABASE_URL directly if it exists (e.g., from Neon.tech or Render)
+DATABASE_URL = os.getenv(
+    "DATABASE_URL", 
+    f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
 engine = create_engine(DATABASE_URL, echo=True)
 
 
