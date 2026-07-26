@@ -11,6 +11,11 @@ import models  # Import models here to ensure they are registered with SQLModel
 # access to the values within the .ini file in use.
 config = context.config
 
+from dotenv import load_dotenv
+
+# Load environment variables from .env file so alembic can read DATABASE_URL
+load_dotenv()
+
 # 💡 PROFESSIONAL FIX: Dynamic Environment Injection
 # 1. Pull current live configurations from our secure runtime shell
 db_user = os.getenv("DB_USER", "sahal")
