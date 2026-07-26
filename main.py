@@ -47,9 +47,15 @@ app = FastAPI(
     version="0.1.0",
 )
 
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
+origins = [
+    "http://localhost:5173",
+    frontend_url
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Permit Vite local browser access
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],  # Allow GET, POST, OPTIONS, PATCH, DELETE
     allow_headers=["*"],  # Allow headers like Authorization and Content-Type
